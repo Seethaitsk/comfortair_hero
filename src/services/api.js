@@ -5,10 +5,23 @@
 
 function getApiBaseUrl() {
   let raw = (
-    process.env.NEXT_PUBLIC_API_BASE_URL || 'https://dev.api.comfortair.co.in/api/v1'
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    'https://dev.api.comfortair.co.in/api/v1'
   )
     .trim()
     .replace(/\/+$/, '');
+
+  // If a frontend domain was mistakenly provided (without api. subdomain)
+  if (!raw.includes('.api.') && !raw.includes('localhost') && !raw.includes('127.0.0.1')) {
+    if (raw.includes('dev.comfortair.co.in')) {
+      raw = raw.replace('dev.comfortair.co.in', 'dev.api.comfortair.co.in');
+    } else if (raw.includes('staging.comfortair.co.in')) {
+      raw = raw.replace('staging.comfortair.co.in', 'staging.api.comfortair.co.in');
+    } else if (raw.includes('comfortair.co.in')) {
+      raw = raw.replace('comfortair.co.in', 'api.comfortair.co.in');
+    }
+  }
 
   // Automatically append /api/v1 if only root domain was provided
   if (!raw.endsWith('/api/v1')) {
