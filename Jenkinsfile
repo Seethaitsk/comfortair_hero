@@ -41,11 +41,20 @@ pipeline {
                 script {
                     def branch = env.BRANCH_NAME ?: env.GIT_BRANCH
                     if (branch == 'main' || branch == 'origin/main') {
-                        sh 'echo "NEXT_PUBLIC_API_URL=https://comfortair.co.in" > .env.production'
+                        sh '''
+                            echo "NEXT_PUBLIC_API_BASE_URL=https://api.comfortair.co.in/api/v1" > .env.production
+                            echo "NEXT_PUBLIC_API_URL=https://api.comfortair.co.in/api/v1" >> .env.production
+                        '''
                     } else if (branch == 'staging' || branch == 'origin/staging') {
-                        sh 'echo "NEXT_PUBLIC_API_URL=https://staging.comfortair.co.in" > .env.production'
+                        sh '''
+                            echo "NEXT_PUBLIC_API_BASE_URL=https://staging.api.comfortair.co.in/api/v1" > .env.production
+                            echo "NEXT_PUBLIC_API_URL=https://staging.api.comfortair.co.in/api/v1" >> .env.production
+                        '''
                     } else {
-                        sh 'echo "NEXT_PUBLIC_API_URL=https://dev.comfortair.co.in" > .env.production'
+                        sh '''
+                            echo "NEXT_PUBLIC_API_BASE_URL=https://dev.api.comfortair.co.in/api/v1" > .env.production
+                            echo "NEXT_PUBLIC_API_URL=https://dev.api.comfortair.co.in/api/v1" >> .env.production
+                        '''
                     }
                 }
                 sh 'rm -rf .next'
