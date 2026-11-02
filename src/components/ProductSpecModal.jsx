@@ -86,7 +86,7 @@ export default function ProductSpecModal() {
                       <i className="fa-solid fa-file-invoice-dollar me-1"></i> Request Price Quote
                     </button>
                     <a
-                      href="tel:04132242111"
+                      href="tel:+919843020458"
                       className="btn btn-custom-outline rounded-pill px-4 py-2.5 fw-bold"
                     >
                       <i className="fa-solid fa-phone me-1"></i> Call Specialist

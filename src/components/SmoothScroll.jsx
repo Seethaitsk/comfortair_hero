@@ -29,7 +29,13 @@ export default function SmoothScroll() {
       wheelMultiplier: 1,
       anchors: true,
       stopInertiaOnNavigate: true,
-      prevent: (node) => node.classList?.contains('modal'),
+      prevent: (node) =>
+        Boolean(
+          node?.classList?.contains('modal') ||
+          node?.closest?.('.modal') ||
+          node?.closest?.('.custom-select-dropdown') ||
+          node?.closest?.('[data-lenis-prevent]')
+        ),
     });
     lenisRef.current = lenis;
 

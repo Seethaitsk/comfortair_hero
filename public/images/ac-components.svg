@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" class="ca-hero-assembly-svg" aria-hidden="true">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="chassisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#111E38" />
+    </linearGradient>
+    <linearGradient id="copperTubeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" />
+      <stop offset="25%" stop-color="#F59E0B" />
+      <stop offset="70%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#78350F" />
+    </linearGradient>
+    <linearGradient id="finGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="filterMeshGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(34, 211, 238, 0.4)" />
+      <stop offset="100%" stop-color="rgba(14, 165, 233, 0.15)" />
+    </linearGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <pattern id="finPattern" width="8" height="16" patternUnits="userSpaceOnUse">
+      <line x1="2" y1="0" x2="2" y2="16" stroke="#38BDF8" stroke-width="1" opacity="0.5" />
+      <line x1="6" y1="0" x2="6" y2="16" stroke="#1E40AF" stroke-width="1" opacity="0.7" />
+    </pattern>
+    <pattern id="filterPattern" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M 0 6 L 6 0 L 12 6 L 6 12 Z" fill="none" stroke="#22D3EE" stroke-width="0.8" opacity="0.35" />
+    </pattern>
+  </defs>
+
+  <!-- STEP 1: Galvanized Steel Mounting Chassis & Base Plate -->
+  <g class="ca-part-group ca-part-chassis">
+    <!-- Wall Mounting Plate -->
+    <rect x="320" y="72" width="748" height="308" rx="16" fill="url(#chassisGrad)" stroke="#334155" stroke-width="2" />
+    <rect x="332" y="84" width="724" height="284" rx="12" fill="none" stroke="rgba(34, 211, 238, 0.25)" stroke-dasharray="6 4" />
+    
+    <!-- Laser Alignment Guidelines & Center Crosshairs -->
+    <line x1="320" y1="226" x2="1068" y2="226" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4 4" />
+    <line x1="694" y1="72" x2="694" y2="380" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4 4" />
+    
+    <!-- Mounting Brackets & Anchor Screws -->
+    <circle cx="360" cy="110" r="8" fill="#475569" stroke="#94A3B8" stroke-width="1.5" />
+    <line x1="356" y1="110" x2="364" y2="110" stroke="#CBD5E1" stroke-width="2" />
+    <circle cx="1028" cy="110" r="8" fill="#475569" stroke="#94A3B8" stroke-width="1.5" />
+    <line x1="1024" y1="110" x2="1032" y2="110" stroke="#CBD5E1" stroke-width="2" />
+    <circle cx="360" cy="342" r="8" fill="#475569" stroke="#94A3B8" stroke-width="1.5" />
+    <line x1="356" y1="342" x2="364" y2="342" stroke="#CBD5E1" stroke-width="2" />
+    <circle cx="1028" cy="342" r="8" fill="#475569" stroke="#94A3B8" stroke-width="1.5" />
+    <line x1="1024" y1="342" x2="1032" y2="342" stroke="#CBD5E1" stroke-width="2" />
+
+    <!-- Refrigerant Pipe Port & Drain Trough -->
+    <rect x="348" y="326" width="90" height="34" rx="6" fill="#0F172A" stroke="#0284C7" stroke-width="1.5" />
+    <circle cx="372" cy="343" r="9" fill="url(#copperTubeGrad)" />
+    <circle cx="412" cy="343" r="12" fill="url(#copperTubeGrad)" />
+    
+    <!-- Chassis Badge -->
+    <text x="350" y="110" fill="#38BDF8" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">CHASSIS // GALVANIZED STEEL</text>
+  </g>
+
+  <!-- STEP 2: Evaporator Heat Exchanger & Copper Grooved Coils -->
+  <g class="ca-part-group ca-part-coil">
+    <!-- Blue Hydrophilic Aluminum Fin Pack -->
+    <rect x="352" y="98" width="640" height="190" rx="8" fill="url(#finGrad)" opacity="0.9" />
+    <rect x="352" y="98" width="640" height="190" rx="8" fill="url(#finPattern)" />
+    
+    <!-- Multi-Row Grooved Copper U-Tubes (Left & Right Manifolds) -->
+    <!-- Left U-Bends -->
+    <path d="M 352 115 C 330 115 330 145 352 145" fill="none" stroke="url(#copperTubeGrad)" stroke-width="12" stroke-linecap="round" />
+    <path d="M 352 165 C 330 165 330 195 352 195" fill="none" stroke="url(#copperTubeGrad)" stroke-width="12" stroke-linecap="round" />
+    <path d="M 352 215 C 330 215 330 245 352 245" fill="none" stroke="url(#copperTubeGrad)" stroke-width="12" stroke-linecap="round" />
+    <path d="M 352 260 C 335 260 335 280 352 280" fill="none" stroke="url(#copperTubeGrad)" stroke-width="10" stroke-linecap="round" />
+
+    <!-- Right U-Bends -->
+    <path d="M 992 135 C 1014 135 1014 165 992 165" fill="none" stroke="url(#copperTubeGrad)" stroke-width="12" stroke-linecap="round" />
+    <path d="M 992 185 C 1014 185 1014 215 992 215" fill="none" stroke="url(#copperTubeGrad)" stroke-width="12" stroke-linecap="round" />
+    <path d="M 992 235 C 1014 235 1014 265 992 265" fill="none" stroke="url(#copperTubeGrad)" stroke-width="12" stroke-linecap="round" />
+
+    <!-- Heat Exchanger Spec Label -->
+    <rect x="780" y="110" width="200" height="26" rx="6" fill="rgba(4, 11, 31, 0.85)" stroke="#F59E0B" stroke-width="1" />
+    <text x="792" y="127" fill="#FCD34D" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" letter-spacing="1">100% INNER-GROOVED COPPER</text>
+  </g>
+
+  <!-- STEP 3: Cross-Flow Blower Fan, DC Inverter Motor & PM 2.5 Filters -->
+  <g class="ca-part-group ca-part-blower">
+    <!-- Cylindrical Cross-Flow Blower Fan -->
+    <rect x="360" y="296" width="580" height="52" rx="10" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+    <!-- Spiral Fan Blades -->
+    <g opacity="0.6" stroke="#38BDF8" stroke-width="1.5">
+      <line x1="380" y1="300" x2="395" y2="344" />
+      <line x1="410" y1="300" x2="425" y2="344" />
+      <line x1="440" y1="300" x2="455" y2="344" />
+      <line x1="470" y1="300" x2="485" y2="344" />
+      <line x1="500" y1="300" x2="515" y2="344" />
+      <line x1="530" y1="300" x2="545" y2="344" />
+      <line x1="560" y1="300" x2="575" y2="344" />
+      <line x1="590" y1="300" x2="605" y2="344" />
+      <line x1="620" y1="300" x2="635" y2="344" />
+      <line x1="650" y1="300" x2="665" y2="344" />
+      <line x1="680" y1="300" x2="695" y2="344" />
+      <line x1="710" y1="300" x2="725" y2="344" />
+      <line x1="740" y1="300" x2="755" y2="344" />
+      <line x1="770" y1="300" x2="785" y2="344" />
+      <line x1="800" y1="300" x2="815" y2="344" />
+      <line x1="830" y1="300" x2="845" y2="344" />
+      <line x1="860" y1="300" x2="875" y2="344" />
+      <line x1="890" y1="300" x2="905" y2="344" />
+      <line x1="920" y1="300" x2="935" y2="344" />
+    </g>
+
+    <!-- DC Inverter Motor Block (Right Side) -->
+    <rect x="948" y="288" width="85" height="66" rx="8" fill="#0F172A" stroke="#22D3EE" stroke-width="1.5" />
+    <circle cx="990" cy="321" r="18" fill="#1E293B" stroke="#06B6D4" stroke-width="1.5" />
+    <circle cx="990" cy="321" r="7" fill="#22D3EE" />
+    <text x="956" y="368" fill="#22D3EE" font-family="'DM Sans', sans-serif" font-size="9" font-weight="700" letter-spacing="1">DC INVERTER</text>
+
+    <!-- Dual PM 2.5 Nano-Silver Filtration Screens (Top Overlay) -->
+    <rect x="360" y="94" width="295" height="184" rx="8" fill="url(#filterMeshGrad)" stroke="#06B6D4" stroke-width="1.5" />
+    <rect x="360" y="94" width="295" height="184" rx="8" fill="url(#filterPattern)" />
+    <rect x="665" y="94" width="295" height="184" rx="8" fill="url(#filterMeshGrad)" stroke="#06B6D4" stroke-width="1.5" />
+    <rect x="665" y="94" width="295" height="184" rx="8" fill="url(#filterPattern)" />
+    
+    <!-- Filter Handle Tabs -->
+    <rect x="470" y="88" width="75" height="12" rx="4" fill="#22D3EE" />
+    <rect x="775" y="88" width="75" height="12" rx="4" fill="#22D3EE" />
+    <text x="380" y="120" fill="#FFFFFF" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="1">PM 2.5 NANO-SILVER MESH</text>
+  </g>
+</svg>
