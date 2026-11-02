@@ -7438,6 +7438,10 @@ button.custom-select-trigger {
 .custom-select-dropdown {
   box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.12), 0 6px 12px -4px rgba(15, 23, 42, 0.08) !important;
   animation: customSelectFadeIn 0.15s ease-out;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 #F8FAFC;
 }
 
 @keyframes customSelectFadeIn {

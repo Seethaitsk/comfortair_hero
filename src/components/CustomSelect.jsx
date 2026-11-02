@@ -24,6 +24,7 @@ export default function CustomSelect({
   const containerRef = useRef(null);
   const listboxRef = useRef(null);
   const triggerRef = useRef(null);
+  const isKeyboardNavRef = useRef(false);
 
   // Normalize options array to objects: { value: string, label: string }
   const normalizedOptions = React.useMemo(() => {
@@ -81,6 +82,7 @@ export default function CustomSelect({
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
+      isKeyboardNavRef.current = true;
       if (!isOpen) {
         setIsOpen(true);
         setHighlightedIndex(0);
@@ -91,6 +93,7 @@ export default function CustomSelect({
       }
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
+      isKeyboardNavRef.current = true;
       if (!isOpen) {
         setIsOpen(true);
         setHighlightedIndex(normalizedOptions.length - 1);
@@ -120,15 +123,16 @@ export default function CustomSelect({
     }
   };
 
-  // Scroll highlighted item into view
+  // Scroll highlighted item into view on keyboard navigation only
   useEffect(() => {
-    if (isOpen && highlightedIndex >= 0 && listboxRef.current) {
+    if (isKeyboardNavRef.current && isOpen && highlightedIndex >= 0 && listboxRef.current) {
       const items = listboxRef.current.querySelectorAll('.custom-select-option');
       if (items[highlightedIndex]) {
         items[highlightedIndex].scrollIntoView({
           block: 'nearest',
         });
       }
+      isKeyboardNavRef.current = false;
     }
   }, [isOpen, highlightedIndex]);
 
@@ -175,6 +179,11 @@ export default function CustomSelect({
           role="listbox"
           tabIndex={-1}
           className="custom-select-dropdown shadow-lg"
+          data-lenis-prevent="true"
+          data-lenis-prevent-wheel="true"
+          data-lenis-prevent-touch="true"
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
           style={{
             position: 'absolute',
             top: 'calc(100% + 4px)',
@@ -186,6 +195,10 @@ export default function CustomSelect({
             border: '1.5px solid #E2E8F0',
             maxHeight: '260px',
             overflowY: 'auto',
+            overscrollBehavior: 'contain',
+            WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#CBD5E1 #F8FAFC',
             padding: '6px',
             listStyle: 'none',
             margin: 0,
@@ -228,7 +241,10 @@ export default function CustomSelect({
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => handleSelect(opt.value)}
-                onMouseEnter={() => setHighlightedIndex(idx)}
+                onMouseEnter={() => {
+                  isKeyboardNavRef.current = false;
+                  setHighlightedIndex(idx);
+                }}
                 className={`custom-select-option ${isSelected ? 'selected' : ''} ${
                   isHighlighted ? 'highlighted' : ''
                 }`}

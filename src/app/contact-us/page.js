@@ -508,13 +508,8 @@ export default function ContactPage() {
                     </div>
                     <div className="ref-contact-title">Call Us</div>
                     <a href={contactDetails.phoneHref || INITIAL_CONTACT.phoneHref} className="ref-contact-highlight">
-                      Mobile: {contactDetails.phone || INITIAL_CONTACT.phone}
+                      {contactDetails.phone || INITIAL_CONTACT.phone}
                     </a>
-                    {contactDetails.secondaryPhone && (
-                      <a href={contactDetails.secondaryPhoneHref || INITIAL_CONTACT.secondaryPhoneHref} className="ref-contact-highlight">
-                        Landline: {contactDetails.secondaryPhone}
-                      </a>
-                    )}
                     <p className="ref-contact-desc mt-1">
                       Talk with our team about scheduling repair, maintenance, or air conditioning service questions.
                     </p>

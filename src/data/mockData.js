@@ -8,9 +8,7 @@
 
 export const INITIAL_CONTACT = {
   phone: '+91 98430 20458',
-  secondaryPhone: '0413 224 2111',
   phoneHref: 'tel:+919843020458',
-  secondaryPhoneHref: 'tel:+914132242111',
   whatsapp: '+91 98430 20458',
   whatsappHref: 'https://wa.me/919843020458?text=Hi%2C%20I%20want%20to%20enquire%20about%20your%20AC%20products%20%2F%20services.',
   email: 'admin@comfortair.co.in',
