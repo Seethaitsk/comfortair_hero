@@ -19,6 +19,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+Tamil:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
+  /* Dynamic Header Height synced by Navbar */
+  --header-h: 70px;
+
   /* Font Families with robust fallbacks */
   --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans Tamil", sans-serif;
   --font-body: 'DM Sans', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans Tamil", sans-serif;
@@ -604,6 +607,9 @@ a {
 
 /* 2. NAVIGATION BAR */
 .navbar-hvac {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
@@ -10551,5 +10557,519 @@ button.custom-select-trigger {
 
   .hero-main-row>.hero-content {
     gap: clamp(8px, 1.5vh, 12px);
+  }
+}
+
+/* ==========================================================================
+   AC Scroll Video Assembly Hero Section
+   ========================================================================== */
+.ca-assembly-wrap {
+  height: 300vh;
+  position: relative;
+  background-color: #0a1a3f;
+}
+
+.ca-assembly-stage {
+  position: sticky;
+  top: var(--header-h, 70px);
+  height: calc(100svh - var(--header-h, 70px));
+  min-height: calc(100svh - var(--header-h, 70px));
+  width: 100%;
+  overflow: hidden;
+  background: #0a1a3f;
+  background-image: url('/videos/ac-poster.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Layer 0: Scrubbable Video */
+.ca-assembly-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  display: block;
+}
+
+/* Layer 1: Readability Overlay (dark navy gradient + bottom shade) */
+.ca-assembly-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(4, 11, 31, 0.88) 0%,
+    rgba(4, 11, 31, 0.6) 42%,
+    rgba(4, 11, 31, 0.15) 75%,
+    rgba(4, 11, 31, 0) 100%
+  );
+}
+
+.ca-assembly-shade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(4, 11, 31, 0.85) 0%, transparent 100%);
+}
+
+/* Layer 2: Hero Content Block (centered on the left side) */
+.ca-assembly-hero-align {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  max-width: 580px;
+  width: calc(100% - 12%);
+  padding-top: clamp(96px, 14vh, 160px);
+  padding-bottom: clamp(96px, 14vh, 160px);
+  box-sizing: border-box;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ca-assembly-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 1;
+  pointer-events: auto;
+  will-change: opacity, transform;
+}
+
+/* Glass Status Badge */
+.ca-assembly-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: clamp(13px, 0.9vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(4, 11, 31, 0.65), 0 2px 14px rgba(4, 11, 31, 0.45);
+  width: fit-content;
+  margin-bottom: 18px;
+}
+
+.ca-assembly-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: caDotPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  flex-shrink: 0;
+}
+
+@keyframes caDotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(0.9);
+  }
+}
+
+/* Headline (Single <h1> on page) */
+.ca-assembly-title {
+  font-family: var(--font-heading);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+  text-shadow: 0 1px 2px rgba(4, 11, 31, 0.65), 0 2px 14px rgba(4, 11, 31, 0.45);
+}
+
+.ca-assembly-title-gradient {
+  color: #5CC8FF;
+  background-image: linear-gradient(135deg, #7DD3FC 0%, #5CC8FF 50%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 10px rgba(4, 11, 31, 0.5));
+  display: inline-block;
+}
+
+/* Paragraph Subtitle */
+.ca-assembly-desc {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.2vw, 1.125rem);
+  line-height: 1.65;
+  margin: 0 0 28px 0;
+  max-width: 540px;
+  text-shadow: 0 1px 2px rgba(4, 11, 31, 0.65), 0 2px 14px rgba(4, 11, 31, 0.45);
+}
+
+/* CTA Buttons */
+.ca-assembly-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.ca-assembly-cta-group:last-child {
+  margin-bottom: 0;
+}
+
+.ca-assembly-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(4, 11, 31, 0.65), 0 2px 14px rgba(4, 11, 31, 0.45);
+  padding: 10px 22px;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              background 0.25s ease,
+              border-color 0.25s ease;
+}
+
+.ca-assembly-btn:focus-visible {
+  outline: 2px solid #38bdf8 !important;
+  outline-offset: 3px !important;
+}
+
+.ca-assembly-btn-primary {
+  background: linear-gradient(135deg, #0078BF 0%, #005a91 100%);
+  color: #FFFFFF !important;
+  border: none;
+  box-shadow: 0 8px 24px rgba(0, 120, 191, 0.45);
+}
+
+.ca-assembly-btn-primary:hover {
+  background: linear-gradient(135deg, #0088d9 0%, #006eb3 100%);
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 120, 191, 0.65);
+}
+
+.ca-assembly-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ca-assembly-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+/* Trust Points */
+.ca-assembly-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ca-assembly-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ca-assembly-trust-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  flex-shrink: 0;
+}
+
+.ca-assembly-trust-text {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 1px 2px rgba(4, 11, 31, 0.65), 0 2px 14px rgba(4, 11, 31, 0.45);
+}
+
+.ca-assembly-trust-text > span:not(.ca-assembly-trust-strong) {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.ca-assembly-trust-strong {
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* Scroll Hint (Bottom Center) */
+.ca-assembly-scroll-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.ca-assembly-mouse {
+  width: 18px;
+  height: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  border-radius: 10px;
+  position: relative;
+}
+
+.ca-assembly-mouse-wheel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 3px;
+  height: 5px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  animation: caMouseWheel 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes caMouseWheel {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+}
+
+.ca-assembly-scroll-text {
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(4, 11, 31, 0.65), 0 2px 14px rgba(4, 11, 31, 0.45);
+}
+
+/* Layer 3: Captions */
+.ca-assembly-text {
+  position: absolute;
+  left: 6%;
+  bottom: 10%;
+  max-width: 640px;
+  margin: 0;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3.2vw, 2.6rem);
+  opacity: 0;
+  z-index: 3;
+}
+
+.ca-assembly-text span {
+  color: #00a8ff;
+  background: linear-gradient(135deg, #38bdf8 0%, #00a8ff 50%, var(--primary-blue, #0078BF) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Tablet Breakpoint (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ca-assembly-wrap {
+    height: 280vh;
+  }
+
+  .ca-assembly-stage {
+    top: var(--header-h, 70px);
+    height: calc(100svh - var(--header-h, 70px));
+    min-height: calc(100svh - var(--header-h, 70px));
+  }
+
+  .ca-assembly-hero-align {
+    max-width: 70%;
+  }
+
+  .ca-assembly-title {
+    font-size: clamp(2.2rem, 4.2vw, 3rem);
+  }
+}
+
+/* Mobile Breakpoint (under 768px) */
+@media (max-width: 767px) {
+  .ca-assembly-wrap {
+    height: 250vh;
+  }
+
+  .ca-assembly-stage {
+    top: var(--header-h, 68px);
+    height: calc(100svh - var(--header-h, 68px));
+    min-height: calc(100svh - var(--header-h, 68px));
+  }
+
+  .ca-assembly-overlay {
+    background: rgba(4, 11, 31, 0.72);
+  }
+
+  .ca-assembly-hero-align {
+    left: 16px;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    width: calc(100% - 32px);
+    max-width: none;
+    padding-top: clamp(64px, 10vh, 100px);
+    padding-bottom: clamp(64px, 10vh, 100px);
+    box-sizing: border-box;
+  }
+
+  .ca-assembly-badge {
+    font-size: 13px;
+    padding: 5px 12px;
+    margin-bottom: 14px;
+  }
+
+  .ca-assembly-title {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .ca-assembly-desc {
+    font-size: 16px;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  .ca-assembly-cta-group {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .ca-assembly-btn {
+    flex: 1 1 auto;
+    padding: 10px 18px;
+    font-size: 0.88rem;
+  }
+
+  .ca-assembly-trust-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .ca-assembly-trust-item:last-child {
+    grid-column: span 2;
+  }
+
+  .ca-assembly-trust-item {
+    padding: 5px 8px;
+    font-size: 0.72rem;
+  }
+
+  .ca-assembly-scroll-hint {
+    bottom: 10px;
+  }
+
+  .ca-assembly-text {
+    left: 16px;
+    width: calc(100% - 32px);
+    bottom: 8%;
+    font-size: clamp(1.15rem, 5vw, 1.8rem);
+  }
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ca-assembly-wrap {
+    height: auto !important;
+  }
+
+  .ca-assembly-stage {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    min-height: 100svh !important;
+    overflow: visible !important;
+  }
+
+  .ca-assembly-video {
+    position: absolute;
+    inset: 0;
+  }
+
+  .ca-assembly-hero-align {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    max-width: 680px !important;
+    width: 100% !important;
+    padding: 40px 6% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .ca-assembly-hero {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .ca-assembly-scroll-hint {
+    display: none !important;
+  }
+
+  .ca-assembly-text {
+    display: none !important;
   }
 }

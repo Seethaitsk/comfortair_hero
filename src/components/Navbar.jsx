@@ -33,6 +33,31 @@ export default function Navbar() {
     };
   }, []);
 
+  const navRef = React.useRef(null);
+
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (navRef.current) {
+        const h = Math.round(navRef.current.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', `${h}px`);
+      }
+    };
+
+    updateHeaderHeight();
+
+    let ro;
+    if (typeof ResizeObserver !== 'undefined' && navRef.current) {
+      ro = new ResizeObserver(() => updateHeaderHeight());
+      ro.observe(navRef.current);
+    }
+
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 40) {
@@ -57,6 +82,7 @@ export default function Navbar() {
 
   return (
     <nav
+      ref={navRef}
       className={`navbar navbar-expand-xl navbar-hvac sticky-top ${
         isScrolled ? 'scrolled' : ''
       }`}
