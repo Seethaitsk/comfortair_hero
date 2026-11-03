@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useModal } from '@/context/ModalContext';
@@ -180,12 +181,12 @@ export default function AcScrollVideo() {
                 <i className="fa-regular fa-calendar-check" aria-hidden="true" />
                 <span>Book a Service</span>
               </button>
-              <a
-                href="#services"
+              <Link
+                href="/services"
                 className="ca-assembly-btn ca-assembly-btn-secondary"
               >
                 <span>Explore Our Services</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
